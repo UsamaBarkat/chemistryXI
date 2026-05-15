@@ -1,0 +1,630 @@
+/* =============================================================================
+   Class XI Chemistry — Sindh Board
+   Shared styles for homepage, chapter list, and lesson pages
+   ============================================================================= */
+
+/* --- CSS variables: colors change in dark mode --- */
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #525252;
+  --border: #e5e5e5;
+  --card-bg: #fafafa;
+  --card-hover: #f0fdfa;
+  --accent: #0d9488;
+  --accent-soft: #ccfbf1;
+  --max-width: 800px;
+  --font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  --radius: 8px;
+  --space: 1rem;
+  --line: 1.7;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #f5f5f5;
+  --text-muted: #a3a3a3;
+  --border: #404040;
+  --card-bg: #262626;
+  --card-hover: #2d3a3a;
+  --accent: #2dd4bf;
+  --accent-soft: #134e4a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1a1a;
+    --text: #f5f5f5;
+    --text-muted: #a3a3a3;
+    --border: #404040;
+    --card-bg: #262626;
+    --card-hover: #2d3a3a;
+    --accent: #2dd4bf;
+    --accent-soft: #134e4a;
+  }
+}
+
+/* --- Base reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: var(--line);
+  color: var(--text);
+  background: var(--bg);
+  transition: background 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Centered content column (max 800px) */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+.page-main {
+  flex: 1;
+  padding-block: 2rem 3rem;
+}
+
+/* --- Header with dark mode toggle (top right) --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 0.75rem clamp(1rem, 4vw, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-title:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .icon-sun {
+  display: inline;
+}
+
+/* --- Homepage --- */
+.home-intro h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.home-intro p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.chapter-grid-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.chapter-grid {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .chapter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.chapter-card {
+  display: block;
+  padding: 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.chapter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+  background: var(--card-hover);
+  text-decoration: none;
+}
+
+.chapter-card__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.chapter-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
+}
+
+.chapter-card__status {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --- Chapter index page (list of lessons) --- */
+.chapter-header {
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.chapter-header h1 {
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  line-height: 1.3;
+}
+
+.lesson-list {
+  list-style: none;
+}
+
+.lesson-list li {
+  margin-bottom: 0.5rem;
+}
+
+.lesson-list a {
+  display: block;
+  padding: 1rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.lesson-list a:hover {
+  border-color: var(--accent);
+  background: var(--card-hover);
+  text-decoration: none;
+}
+
+.lesson-list li.is-soon span {
+  display: block;
+  padding: 1rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.coming-soon-page {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.coming-soon-page h1 {
+  margin-bottom: 1rem;
+}
+
+/* --- Lesson page layout --- */
+.lesson-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.lesson-header h1 {
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  margin: 0.5rem 0;
+}
+
+.progress {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Section blocks with emoji headings */
+.lesson-section {
+  margin-bottom: 2.5rem;
+}
+
+.section-heading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lesson-section p {
+  margin-bottom: 1rem;
+}
+
+.lesson-section ul,
+.lesson-section ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.lesson-section li {
+  margin-bottom: 0.35rem;
+}
+
+/* Definition boxes */
+.def-box {
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  border-left: 4px solid;
+}
+
+.def-box--textbook {
+  border-left-color: #2563eb;
+}
+
+.def-box--easy {
+  border-left-color: #16a34a;
+}
+
+.def-box strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+/* Confusion / warning boxes */
+.confusion-box {
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: var(--radius);
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+}
+
+[data-theme="dark"] .confusion-box {
+  background: #422006;
+  border-left-color: #fbbf24;
+}
+
+.confusion-box h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ASCII / diagram code boxes */
+.diagram-box {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid var(--border);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  background: var(--card-bg);
+  font-weight: 600;
+}
+
+.data-table tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--card-bg) 50%, transparent);
+}
+
+/* Summary box at bottom */
+.summary-box {
+  padding: 1.25rem 1.5rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  margin-top: 0.5rem;
+}
+
+.summary-box ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.summary-box li {
+  margin-bottom: 0.5rem;
+}
+
+/* Practice / MCQs */
+.practice-block {
+  margin-bottom: 2rem;
+}
+
+.practice-block h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+.mcq {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+}
+
+.mcq__question {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.mcq__options {
+  list-style: none;
+  padding: 0;
+}
+
+.mcq__options li {
+  margin-bottom: 0.5rem;
+}
+
+.mcq__option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.mcq__option:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.mcq__option.is-correct {
+  border-color: #16a34a;
+  background: #dcfce7;
+}
+
+.mcq__option.is-wrong {
+  border-color: #dc2626;
+  background: #fee2e2;
+}
+
+[data-theme="dark"] .mcq__option.is-correct {
+  background: #14532d;
+}
+
+[data-theme="dark"] .mcq__option.is-wrong {
+  background: #7f1d1d;
+}
+
+.mcq__option:disabled {
+  cursor: default;
+}
+
+.mcq__feedback {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 1.25rem;
+}
+
+/* Hidden answers until "Show Answer" clicked */
+.mcq-answers {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px dashed var(--border);
+  font-size: 0.95rem;
+}
+
+.mcq-answers.is-visible {
+  display: block;
+}
+
+.mcq-answers p {
+  margin-bottom: 0.5rem;
+}
+
+.btn-show-answers {
+  margin-top: 1rem;
+  padding: 0.65rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.btn-show-answers:hover {
+  background: var(--accent-soft);
+}
+
+.short-q {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-left: 3px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.short-q__answer {
+  display: none;
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+}
+
+.short-q__answer.is-visible {
+  display: block;
+}
+
+/* Next lesson button */
+.lesson-nav-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  border: none;
+}
+
+.btn-next:hover {
+  opacity: 0.9;
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-next.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

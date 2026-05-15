@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Class XI Chemistry notes for Sindh Board — chapters, lessons, and practice.">
+  <title>My Class XI Chemistry — Sindh Board</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Load saved theme before page paints (stops flash) -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem("chemistry-theme");
+      if (saved === "light" || saved === "dark") {
+        document.documentElement.setAttribute("data-theme", saved);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Sticky header: site title + dark mode toggle (top right) -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">My Class XI Chemistry</a>
+      <button
+        type="button"
+        class="theme-toggle"
+        id="theme-toggle"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode"
+      >
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+        <span class="icon-sun" aria-hidden="true">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main container">
+    <article class="home-intro">
+      <h1>My Class XI Chemistry — Sindh Board</h1>
+      <p>
+        Welcome to my personal chemistry notes for <strong>Class XI (Sindh Board)</strong>.
+        Each chapter is broken into short lessons with real-life examples, clear definitions,
+        practice questions, and summaries — so I can revise quickly before tests.
+      </p>
+    </article>
+
+    <!-- Grid of 8 chapters; each card links to that chapter folder -->
+    <section class="chapter-grid-section" aria-labelledby="chapters-heading">
+      <h2 id="chapters-heading">Chapters</h2>
+      <ul class="chapter-grid" role="list">
+        <li>
+          <a href="chapters/chapter-1/" class="chapter-card">
+            <span class="chapter-card__num">1</span>
+            <h3>Introduction to Fundamental Concepts of Chemistry</h3>
+            <p class="chapter-card__status">7 lessons · In progress</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-2/" class="chapter-card">
+            <span class="chapter-card__num">2</span>
+            <h3>The Three States of Matter</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-3/" class="chapter-card">
+            <span class="chapter-card__num">3</span>
+            <h3>Atomic Structure</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-4/" class="chapter-card">
+            <span class="chapter-card__num">4</span>
+            <h3>Chemical Bonding</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-5/" class="chapter-card">
+            <span class="chapter-card__num">5</span>
+            <h3>Energetics of Chemical Reactions</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-6/" class="chapter-card">
+            <span class="chapter-card__num">6</span>
+            <h3>Chemical Equilibrium</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-7/" class="chapter-card">
+            <span class="chapter-card__num">7</span>
+            <h3>Solutions and Electrolytes</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+        <li>
+          <a href="chapters/chapter-8/" class="chapter-card">
+            <span class="chapter-card__num">8</span>
+            <h3>Chemical Kinetics</h3>
+            <p class="chapter-card__status">Coming soon</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Usama · Personal Sindh Board Class XI notes</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
